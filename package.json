@@ -1,0 +1,40 @@
+{
+  "name": "ai-usage-widget",
+  "version": "0.1.0",
+  "description": "Afterglow, a macOS desktop widget for Codex usage windows.",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "usage:once": "node scripts/print-usage.js",
+    "pack:mac": "electron-builder --mac dir -c.electronDist=./node_modules/electron/dist -c.electronVersion=42.5.0 && ditto -c -k --sequesterRsrc --keepParent \"dist/mac-arm64/余晖.app\" \"dist/余晖-0.1.0-arm64-mac.zip\"",
+    "dist:mac": "electron-builder --mac dmg -c.electronDist=./node_modules/electron/dist -c.electronVersion=42.5.0"
+  },
+  "keywords": [
+    "codex",
+    "usage",
+    "macos",
+    "electron"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^42.5.0",
+    "electron-builder": "^26.15.3"
+  },
+  "build": {
+    "appId": "com.local.ai-usage-widget",
+    "productName": "余晖",
+    "files": [
+      "src/**/*",
+      "assets/**/*",
+      "package.json"
+    ],
+    "mac": {
+      "category": "public.app-category.utilities",
+      "target": [
+        "zip",
+        "dmg"
+      ]
+    }
+  }
+}
