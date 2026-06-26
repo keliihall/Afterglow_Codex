@@ -21,8 +21,11 @@ function createTrayIcon() {
   return image;
 }
 
-const WINDOW_WIDTH = 202;
-const WINDOW_HEIGHT = 54;
+const PANEL_WIDTH = 202;
+const PANEL_HEIGHT = 54;
+const WINDOW_INSET = 3;
+const WINDOW_WIDTH = PANEL_WIDTH + WINDOW_INSET * 2;
+const WINDOW_HEIGHT = PANEL_HEIGHT + WINDOW_INSET * 2;
 const ALWAYS_ON_TOP_LEVEL = "screen-saver";
 const ALL_SPACES_OPTIONS = {
   visibleOnFullScreen: true,
@@ -32,8 +35,8 @@ const ALL_SPACES_OPTIONS = {
 function bottomRightBounds(display) {
   const bounds = display.workArea;
   return {
-    x: Math.round(bounds.x + bounds.width - WINDOW_WIDTH - 28),
-    y: Math.round(bounds.y + bounds.height - WINDOW_HEIGHT - 72)
+    x: Math.round(bounds.x + bounds.width - WINDOW_WIDTH - 28 + WINDOW_INSET),
+    y: Math.round(bounds.y + bounds.height - WINDOW_HEIGHT - 72 + WINDOW_INSET)
   };
 }
 

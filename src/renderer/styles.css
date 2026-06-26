@@ -8,6 +8,7 @@
   --green: #35b872;
   --amber: #d99a28;
   --red: #d9544c;
+  --window-inset: 3px;
 }
 
 * {
@@ -19,6 +20,7 @@ body {
   width: 100%;
   height: 100%;
   margin: 0;
+  padding: var(--window-inset);
   overflow: hidden;
   background: transparent;
   color: var(--text);
@@ -32,22 +34,36 @@ body {
   height: 100%;
   margin: 0;
   padding: 8px 10px;
-  border: 1px solid var(--line);
+  border: 0;
   border-radius: 18px;
   background: var(--glass);
+  background-clip: padding-box;
   box-shadow: none;
   backdrop-filter: blur(22px) saturate(1.5);
   -webkit-backdrop-filter: blur(22px) saturate(1.5);
   -webkit-app-region: drag;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   display: flex;
   align-items: center;
   gap: 9px;
+}
+
+.shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px var(--line);
+  pointer-events: none;
 }
 
 .logo {
   width: 22px;
   height: 22px;
   position: relative;
+  z-index: 1;
   flex: 0 0 auto;
   display: grid;
   place-items: center;
@@ -65,6 +81,8 @@ body {
   min-width: 0;
   display: grid;
   gap: 4px;
+  position: relative;
+  z-index: 1;
 }
 
 .meter {
